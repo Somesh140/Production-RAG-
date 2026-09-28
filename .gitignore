@@ -1,0 +1,36 @@
+.claude/worktrees/
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+vector_store/
+.chroma/
+chroma/
+.DS_Store
+__marimo__/
+.marimo.toml
+/graphi*
+scripts/*
+.claude/*
+
+# Interactive scrollytelling course: instructor material, not shipped to learners
+rag_course/*
+
+# Runtime logs
+*.log
+
+# Superseded scratch/backup app iterations
+app/workbook_app_v2.py
+app/workbook_app_v3.py
+
+# Stray local notes file
+/docker
+
+# Internal maintainer docs: not part of the learner-facing repo
+/BUILD_PLAN.md
+/QA_REVIEW_REPORT.md
+/SESSION_QA_REPORT.md

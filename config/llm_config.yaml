@@ -1,0 +1,40 @@
+# LLM Configuration
+# Defines the LLM/embedding provider and model parameters. Same pattern as
+# Bootcamp 1/2/3.
+#
+# Provider: configured for OpenRouter (https://openrouter.ai) so a single key
+# can be issued to every participant. Requires LLM_BASE_URL=https://openrouter.ai/api/v1
+# in .env - see .env.example. Model names below use OpenRouter's
+# provider-namespaced format ("openai/gpt-4", not "gpt-4").
+#
+# To use a direct OpenAI key instead: unset LLM_BASE_URL in .env and drop the
+# "openai/" prefix from every model_name below.
+provider:
+  name: "openrouter"
+  api_type: "openai"
+
+models:
+  # Grounded answer generation (Activity 2.3).
+  chat:
+    model_name: "openai/gpt-4"
+    temperature: 0.2
+    max_tokens: 800
+    top_p: 1.0
+
+  # Embedding model for the vector store (Activity 2.1). 1536 dims for
+  # text-embedding-3-small - keep vector_store dimension in sync.
+  embedding:
+    model_name: "openai/text-embedding-3-small"
+    dimensions: 1536
+
+api:
+  timeout: 60
+  max_retries: 3
+  retry_delay: 2
+
+# Illustrative only - shows the shape a real enterprise config would carry for
+# content safety and context-window limits. Not read by any module.
+safety:
+  content_filter: true
+  max_context_length: 8000
+  truncate_if_exceeds: true

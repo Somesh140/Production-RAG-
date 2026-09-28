@@ -1,0 +1,59 @@
+# Production RAG & Enterprise Knowledge Systems - runtime dependencies.
+# Version constraints: Unpinned - environment determines versions.
+# Strategy: No version pins; pip resolves latest compatible versions at install time.
+# Rationale: Lab VM environment controls versions; bootcamp focuses on concepts, not version-specific APIs.
+# Tradeoff: Reproducibility (lower) vs. simplicity (higher) - acceptable for educational context.
+# Security: Run `python scripts/check_dependencies.py` periodically to check for known vulnerabilities.
+
+python-dotenv
+
+# LLM + embeddings: OpenAI-compatible API (OpenRouter by default, direct OpenAI also works).
+openai
+
+# RAG framework - loaders, splitters, retrievers.
+langchain
+langchain-community
+langchain-text-splitters
+langchain-chroma
+langchain-openai
+
+# Vector stores: FAISS is the default, Chroma is the comparison path. faiss-cpu
+# ships prebuilt wheels for current Python releases (incl. 3.14); chromadb's
+# native Rust binding does not yet have a Python 3.14 wheel (chromadb 1.5.9,
+# its latest PyPI release as of this writing, still lacks one) and fails to
+# load on any 3.14 machine - if you're on 3.14, use faiss (the default) until
+# chroma-core ships one.
+chromadb
+faiss-cpu
+
+# Multi-format ingestion (Activity 1.2).
+pypdf
+python-docx
+beautifulsoup4
+lxml
+markdown
+
+# Hybrid retrieval (Activity 2.2): BM25 lexical score fused with vector similarity.
+rank-bm25
+
+# Observability (Activity 3.1).
+langsmith
+
+# Numerics; scikit-learn is used by scripts/build_course_data.py to precompute
+# the interactive course's TF-IDF projection and retrieval-demo scores offline.
+numpy
+scikit-learn
+
+# UI - Streamlit workbook for the hands-on build (Part B, app/workbook_app.py).
+# >=1.56.0: minimum needed for st.iframe (replaces the deprecated
+# st.components.v1.html for embedding raw HTML/SVG content).
+streamlit>=1.56.0
+
+# Configuration.
+pyyaml
+
+# Testing (Activity 3.2 smoke suite).
+pytest
+
+# Security scanning (run: python scripts/check_dependencies.py)
+pip-audit

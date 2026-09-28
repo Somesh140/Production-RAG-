@@ -1,0 +1,10 @@
+# Applies to every Streamlit app run from this project root (workbook_app.py,
+# knowledge_portal.py). "minimal" removes the floating
+# top-right toolbar (Deploy button, hamburger menu, "Manage app") entirely,
+# rather than trying to out-z-index or reposition a fixed-position element
+# with CSS - it's a real Streamlit config option, not a CSS workaround. This
+# is the fix for the sticky-toolbar-overlaps-scrolled-content defect: the
+# toolbar was fixed to the viewport (not the page), so no amount of
+# .block-container top padding could keep later-scrolled content clear of it.
+[client]
+toolbarMode = "minimal"

@@ -1,0 +1,19 @@
+relative_path,title,department,doc_type,product,version,effective_date,owner
+retail_banking/savings_account_policy.md,Savings Account Policy,retail_banking,policy,Savings Account,2.1,2026-04-01,Retail Products
+retail_banking/account_opening_procedure.docx,Account Opening Procedure,retail_banking,procedure,Savings Account,3.0,2026-06-15,Branch Operations
+retail_banking/kyc_norms.pdf,KYC Norms - Retail Customers,retail_banking,regulatory_circular,All Retail Products,1.4,2026-01-10,Compliance
+loans/home_loan_policy.pdf,Home Loan Policy,loans,policy,Home Loan,4.2,2026-05-01,Mortgages
+loans/personal_loan_guidelines.docx,Personal Loan Guidelines (Current),loans,policy,Personal Loan,2.0,2026-03-01,Unsecured Lending
+loans/personal_loan_guidelines_v1.docx,Personal Loan Guidelines (Superseded 2024),loans,policy,Personal Loan,1.0,2024-02-01,Unsecured Lending
+loans/loan_restructuring_sop.md,Loan Restructuring SOP,loans,sop,All Loans,1.2,2026-02-20,Collections
+loans/auto_loan_product_sheet.html,Auto Loan Product Sheet,loans,product_sheet,Auto Loan,3.1,2026-04-15,Vehicle Finance
+cards/credit_card_operating_manual.pdf,Credit Card Operating Manual,cards,manual,Credit Card,5.0,2026-05-20,Cards Product
+cards/chargeback_dispute_procedure.docx,Chargeback and Dispute Procedure,cards,procedure,Credit Card,2.3,2026-06-01,Cards Operations
+cards/rewards_program_sheet.html,Rewards Program Sheet,cards,product_sheet,Credit Card,4.1,2026-04-01,Cards Product
+operations/branch_operations_sop.md,Branch Operations SOP,operations,sop,Branch Banking,6.1,2026-06-10,Branch Operations
+operations/complaint_handling_procedure.docx,Complaint Handling Procedure,operations,procedure,All Products,3.4,2026-05-05,Customer Experience
+operations/cash_management_sop.pdf,Cash Management SOP,operations,sop,Cash Management,2.0,2026-03-15,Currency Chest
+compliance/aml_policy.pdf,Anti-Money-Laundering Policy,compliance,policy,Enterprise,7.2,2026-06-01,Compliance
+compliance/regulatory_circular_2026_07.pdf,Regulatory Circular - Digital Lending Disclosures (Jul 2026),compliance,regulatory_circular,Enterprise,1.0,2026-07-01,Compliance
+compliance/data_privacy_policy.html,Data Privacy Policy,compliance,policy,Enterprise,2.0,2026-04-25,Data Protection Office
+compliance/sanctions_screening_sop.md,Sanctions Screening SOP,compliance,sop,Enterprise,3.1,2026-05-30,Sanctions Desk

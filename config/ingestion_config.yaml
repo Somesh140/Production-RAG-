@@ -1,0 +1,83 @@
+# Ingestion, chunking, retrieval, and validation settings for the Enterprise
+# Knowledge System. Read across Activities 1.2 - 2.3.
+
+# Illustrative only - names this pipeline for humans reading the config.
+pipeline:
+  name: "enterprise_knowledge_system"
+  version: "1.0.0"
+
+# Activity 1.2 - which file types the ingestion pipeline accepts, and where
+# the enterprise corpus lives.
+ingestion:
+  knowledge_base_path: "data/knowledge_base"
+  manifest_path: "data/knowledge_base/manifest.csv"
+  supported_extensions:
+    - ".pdf"
+    - ".docx"
+    - ".html"
+    - ".htm"
+    - ".md"
+
+# Activity 1.3 - the enterprise metadata every chunk is tagged with. These are
+# the fields the retriever can filter on in Activity 2.2.
+metadata:
+  required_fields:
+    - department
+    - doc_type
+    - product
+    - version
+    - effective_date
+    - source
+  departments:
+    - retail_banking
+    - loans
+    - cards
+    - operations
+    - compliance
+  doc_types:
+    - policy
+    - procedure
+    - manual
+    - regulatory_circular
+    - product_sheet
+    - sop
+
+# Activity 2.1 - chunking strategy and vector store.
+chunking:
+  strategy: "recursive"        # fixed | recursive | markdown
+  chunk_size: 800
+  chunk_overlap: 120
+
+vector_store:
+  backend: "faiss"             # faiss | chroma  (overridden by VECTOR_STORE in .env). faiss is the
+                                # default: chromadb's native Rust binding has no Python 3.14 wheel yet
+                                # (chromadb 1.5.9 is the latest release on PyPI as of this writing and
+                                # still lacks one), so it fails on any machine running 3.14. faiss-cpu
+                                # already ships a cp314 wheel and has no such ABI dependency.
+  persist_directory: "vector_store"
+  collection_name: "enterprise_kb"
+  distance: "cosine"
+
+# Activity 2.2 - retrieval optimization.
+retrieval:
+  top_k: 5
+  score_threshold: 0.2
+  hybrid:
+    enabled: true
+    vector_weight: 0.6
+    lexical_weight: 0.4       # BM25
+
+# Activity 2.3 - grounded generation / citation validation.
+generation:
+  max_context_chunks: 5
+  require_citations: true
+  refuse_when_no_context: true
+
+# Activity 3.2 - structural validation the pytest smoke suite and the
+# in-pipeline checks share.
+validation:
+  required_answer_fields:
+    - answer
+    - citations
+    - retrieved_chunks
+  min_citations_when_answered: 1

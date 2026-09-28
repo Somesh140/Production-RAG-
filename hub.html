@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Production RAG &amp; Enterprise Knowledge Systems: Course Hub</title>
+<style>
+  :root{
+    --bg:#faf9f6; --bg2:#f1f0ea; --panel:#ffffff; --ink:#141e24; --muted:#5a6a72;
+    --line:#e6e5df; --accent:#1f6f78; --accent2:#c65d3b; --accent-ink:#0b2545;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Consolas,"Liberation Mono",monospace;
+    --shadow:0 1px 3px rgba(11,37,69,.06),0 8px 24px rgba(11,37,69,.05);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0c1114; --bg2:#111a1e; --panel:#151d21; --ink:#e8edeb; --muted:#98a5ab;
+      --line:#28323a; --accent:#54bcc6; --accent2:#e08a63; --accent-ink:#cfe3ea;
+      --shadow:0 1px 3px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--font);
+    background-image:radial-gradient(64vw 44vh at 82% -6%, color-mix(in srgb,var(--accent) 10%,transparent), transparent 70%);}
+  ::selection{background:color-mix(in srgb,var(--accent) 26%,transparent)}
+  a{color:var(--accent)}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2.5px solid var(--accent2);outline-offset:2px;border-radius:4px}
+  h1,h2,h3{line-height:1.16;color:var(--ink);letter-spacing:-.02em;margin:0}
+  main{max-width:1080px;margin:0 auto;padding:40px 22px 80px}
+  header.top{max-width:1080px;margin:0 auto;padding:28px 22px 0}
+  .kicker{color:var(--accent);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem}
+  h1{font-size:clamp(1.55rem,3.4vw,2.15rem);margin-top:8px}
+  .sub{color:var(--muted);max-width:62ch;margin-top:12px;font-size:1.02rem}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px}
+  .card .tag{display:inline-flex;align-self:flex-start;font-size:.68rem;font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);
+    background:color-mix(in srgb,var(--accent) 14%,transparent);padding:.28em .6em;border-radius:5px}
+  .card h2{font-size:1.18rem}
+  .card p{color:var(--ink);opacity:.85;margin:0;font-size:.97rem}
+  .card .cmd{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;font:.86rem/1.5 var(--mono);color:var(--ink);
+    white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;max-width:100%}
+  .card .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:auto}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:9px;
+    background:var(--accent);color:#fff;font-weight:700;text-decoration:none;font-size:.9rem;
+    min-height:38px;border:1px solid transparent}
+  .btn:hover{background:var(--accent-ink)}
+  .hint{color:var(--muted);font-size:.82rem;display:flex;align-items:center;gap:6px}
+  .hint svg{flex:none}
+  footer{max-width:1080px;margin:0 auto;padding:0 22px 50px;color:var(--muted);font-size:.85rem}
+  footer a{color:var(--accent)}
+  .notrun{border:1px dashed var(--line);border-radius:8px;padding:10px 12px;background:var(--bg2);
+    font-size:.85rem;color:var(--ink);opacity:.9;display:none}
+  .notrun.show{display:block}
+  .notrun b{color:var(--accent-ink)}
+  @media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto !important} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="kicker">Production RAG &amp; Enterprise Knowledge Systems</div>
+  <h1>Course hub</h1>
+  <p class="sub">Four surfaces, one starting point. Each runs as its own local
+    process. This page just links to them and gives you the
+    exact command to start each one. It doesn't share state with the apps it points to.</p>
+</header>
+
+<main>
+  <div class="grid">
+
+    <section class="card">
+      <span class="tag">Instructor only &middot; Concepts</span>
+      <h2>Interactive course</h2>
+      <p>The pipeline, one stage at a time: 7 chapters, each with a live widget you
+        play with right in the browser (re-split chunks, re-rank a hybrid retriever,
+        hover a citation to see its source) and a &ldquo;your turn&rdquo; challenge with
+        instant feedback. No API key, no install. It all runs in your browser. This is
+        an instructor-facing demo surface, not distributed to learners, and is
+        git-ignored.</p>
+      <code class="cmd">python -m http.server 8540 --directory rag_course</code>
+      <div class="row">
+        <a class="btn" href="http://localhost:8540/index.html" target="_blank" rel="noopener"
+           data-check="8540">Open course &rarr;</a>
+        <span class="hint">or open <code>rag_course/index.html</code> directly, no server needed</span>
+      </div>
+      <div class="notrun" data-notrun="8540">Not running yet? Run the command above from the
+        project root, then reload this link.</div>
+    </section>
+
+    <section class="card">
+      <span class="tag">Part B &middot; Hands-on build</span>
+      <h2>Guided workbook</h2>
+      <p>All 9 activities, run against your own code. Edit the real <code>src/</code> files in
+        your IDE, then run that activity's checks from the workbook. They test exactly what's
+        saved on disk, in a fresh subprocess every time, so there's no stale
+        state. Stuck? Run the reference solution and compare. Every activity page has a floating
+        &ldquo;&#x1F9D1;&#x200D;&#x1F4BB; Code Assistant&rdquo; chat. It's grounded in
+        <code>reference_solution/</code> and writes code for you to read and copy into
+        <code>src/</code> yourself. It's the only code assistant in this course, with no
+        separate app. At the end there's a live &ldquo;ask your own pipeline a
+        question&rdquo; section: the same knowledge portal as below, without leaving this
+        tab.</p>
+      <code class="cmd">python -m streamlit run app/workbook_app.py --server.headless true --server.port 8504</code>
+      <div class="row">
+        <a class="btn" href="http://localhost:8504" target="_blank" rel="noopener"
+           data-check="8504">Open workbook &rarr;</a>
+      </div>
+      <div class="notrun" data-notrun="8504">Not running yet? Run the command above from the
+        project root, then reload this link.</div>
+    </section>
+
+    <section class="card">
+      <span class="tag">Finished product</span>
+      <h2>Knowledge portal</h2>
+      <p>The finished Enterprise Knowledge System, running for real: ask a question,
+        get a cited answer or an honest refusal, filtered by department. It shows what
+        your finished pipeline looks like in production. It isn't a teaching surface,
+        and it only answers correctly once your own <code>src/</code> code passes
+        the workbook's checks. The same ask/answer UI is also built into the workbook's
+        Final Review page, so this standalone page is optional.</p>
+      <code class="cmd">python -m streamlit run app/knowledge_portal.py --server.headless true --server.port 8503</code>
+      <div class="row">
+        <a class="btn" href="http://localhost:8503" target="_blank" rel="noopener"
+           data-check="8503">Open portal &rarr;</a>
+      </div>
+      <div class="notrun" data-notrun="8503">Not running yet? Run the command above from the
+        project root, then reload this link.</div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  Run every command from the project root. The workbook and portal use different ports
+  (8504 / 8503), so you can keep both open at once. The Code Assistant
+  has no separate app or port. It lives inside the workbook (8504) as a floating
+  panel. See <a href="README.md">README.md</a> for full setup.
+</footer>
+
+<script>
+(function(){
+  // Best-effort liveness check: try to reach each port and reveal the
+  // "not running yet" hint if it looks unreachable. This can't always
+  // detect success cross-origin, so it only ever adds a hint, never
+  // hides or disables a link.
+  document.querySelectorAll('[data-check]').forEach(function(link){
+    var port = link.getAttribute('data-check');
+    var hint = document.querySelector('[data-notrun="' + port + '"]');
+    if(!hint) return;
+    var img = new Image();
+    var settled = false;
+    var timer = setTimeout(function(){
+      if(!settled){ settled = true; hint.classList.add('show'); }
+    }, 1200);
+    img.onerror = function(){
+      // onerror fires for a reachable HTTP server too (no image at that
+      // path), so this alone doesn't prove failure; only the timeout
+      // (nothing responded at all) triggers the hint reliably.
+    };
+    img.onload = function(){
+      clearTimeout(timer);
+      settled = true;
+    };
+    img.src = 'http://localhost:' + port + '/favicon.ico?_=' + Date.now();
+  });
+})();
+</script>
+
+</body>
+</html>

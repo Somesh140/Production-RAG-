@@ -1,0 +1,63 @@
+{
+  "description": "End-to-end scenarios for the Enterprise Knowledge System. Used by Activity 2.2 (retrieval optimization), Activity 2.3 (grounded generation), and the Activity 3.2 pytest smoke suite. 'expected_department' is the metadata filter a well-formed query should apply; 'must_include' are substrings a correct grounded answer is expected to contain; 'expected_sources' name the document(s) the answer should cite.",
+  "scenarios": [
+    {
+      "id": "SCN-01",
+      "question": "What is the minimum balance requirement for a savings account in a metro branch, and what is the penalty if it is not maintained?",
+      "expected_department": "retail_banking",
+      "expected_sources": ["retail_banking/savings_account_policy.md"],
+      "must_include": ["5,000", "300"]
+    },
+    {
+      "id": "SCN-02",
+      "question": "What credit score does an applicant need for a personal loan at the standard rate?",
+      "expected_department": "loans",
+      "expected_sources": ["loans/personal_loan_guidelines.docx"],
+      "must_include": ["730"],
+      "note": "A v1.0 (2024, superseded) copy exists; retrieval should prefer the current version. Exercises version-aware filtering in Activity 2.2."
+    },
+    {
+      "id": "SCN-03",
+      "question": "How many days does a cardholder have to raise a transaction dispute, and when is a provisional credit issued?",
+      "expected_department": "cards",
+      "expected_sources": ["cards/chargeback_dispute_procedure.docx"],
+      "must_include": ["60 days", "7 working days"]
+    },
+    {
+      "id": "SCN-04",
+      "question": "What is the maximum loan-to-value for a home loan of 50 lakh?",
+      "expected_department": "loans",
+      "expected_sources": ["loans/home_loan_policy.pdf"],
+      "must_include": ["80%"]
+    },
+    {
+      "id": "SCN-05",
+      "question": "Within how many hours must a personal data breach be reported to the regulator?",
+      "expected_department": "compliance",
+      "expected_sources": ["compliance/data_privacy_policy.html"],
+      "must_include": ["72 hours"]
+    },
+    {
+      "id": "SCN-06",
+      "question": "What is the cooling-off period for a digital loan under the July 2026 circular?",
+      "expected_department": "compliance",
+      "expected_sources": ["compliance/regulatory_circular_2026_07.pdf"],
+      "must_include": ["3 days"]
+    },
+    {
+      "id": "SCN-07",
+      "question": "What is the PAN threshold for a cash deposit at a branch?",
+      "expected_department": "operations",
+      "expected_sources": ["operations/branch_operations_sop.md"],
+      "must_include": ["50,000"]
+    },
+    {
+      "id": "SCN-08",
+      "question": "What is the interest rate on the bank's fixed deposit for senior citizens?",
+      "expected_department": null,
+      "expected_sources": [],
+      "must_include": ["I don't have a policy document that covers this"],
+      "note": "Out-of-scope: no FD document in the corpus. A grounded system must refuse rather than hallucinate."
+    }
+  ]
+}

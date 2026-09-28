@@ -1,0 +1,40 @@
+# PROVIDED, COMPLETE (Activity 3.3). See Dockerfile.
+#
+# Single-instance by design (this bootcamp's scope). Scaling to more than
+# one replica behind a load balancer is out of scope here, but worth
+# knowing before anyone extends this: the vector index still builds lazily
+# on first request (see Dockerfile), and nothing coordinates that build
+# across replicas sharing this same vector_store volume - two replicas
+# receiving the first query at once would race to build it concurrently.
+services:
+  enterprise-knowledge-system:
+    build: .
+    image: enterprise-knowledge-system:local
+    container_name: enterprise-knowledge-system
+    ports:
+      # Host 8502 -> container 8501, so the containerized portal doesn't
+      # collide with a local `streamlit run` (8501) during the lab.
+      - "8502:8501"
+    env_file:
+      - .env
+    environment:
+      - VECTOR_STORE=chroma
+    volumes:
+      # Mount data/ read-write so the corpus can be inspected without a rebuild.
+      - ./data:/app/data
+      # Persist the vector index across container restarts, in a Docker-managed
+      # named volume rather than a host-folder bind mount. The container runs
+      # as root (no USER directive in the Dockerfile), so a bind mount here
+      # would leave root-owned files under ./vector_store on the host - the
+      # exact same folder a local `streamlit run` (not in Docker) also writes
+      # to as your normal user, causing a permission-denied error the next
+      # time either side tries to write there. A named volume is fully
+      # Docker-internal: it never touches the host filesystem, so a learner
+      # never sees or owns any container-created file, and the two vector
+      # stores (this one, and the local `vector_store/` folder used outside
+      # Docker) can never collide.
+      - vector_store_data:/app/vector_store
+    restart: unless-stopped
+
+volumes:
+  vector_store_data:
